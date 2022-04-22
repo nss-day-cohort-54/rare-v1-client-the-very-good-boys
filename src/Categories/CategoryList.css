@@ -1,0 +1,49 @@
+.categoryPageContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    row-gap: 30px;
+    padding: 50px;
+    max-height: 800px;
+}
+.categoryRow {
+    display: flex;
+}
+
+.createContainer {
+    border: 1px solid black;
+    border-radius: 28px;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 150%;
+    width: auto;
+}
+
+.categoriesName {
+    border: 1px solid black;
+    padding: 2px;
+    padding-right: 50px;
+    min-width: 250px;
+}
+
+.categoryHeader {
+    font-size: 170%;
+    padding-top: none;
+}
+
+.labelField {
+    padding: 10px;
+    min-width: 0px;
+}
+
+.button {
+    padding: 5px;
+    margin: 5px;
+}
+
+.saveButton {
+    min-width: 110px;
+    margin: 7px;
+}
