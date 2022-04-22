@@ -8,11 +8,11 @@ import { getTags } from "./tags/TagsManger"
 
 export const Rare = () => {
   const [token, setTokenState] = useState(localStorage.getItem('token'))
-  const [tags, updateTags] = useState([])
+  const [tags, setTags] = useState([])
 
   useEffect(
     () => {
-      getTags().then(data => updateTags(data))
+      getTags().then(data => setTags(data))
     },[]
   )
 
