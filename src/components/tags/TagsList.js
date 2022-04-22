@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { deleteTag, addTag, getTags, getTagById, updateTag } from "./TagsManger"
 import { ReactComponent as EditIcon } from ".//icons8-edit.svg"
 import { ReactComponent as DeleteIcon} from ".//icons8-delete.svg"
@@ -6,6 +6,7 @@ import { ReactComponent as DeleteIcon} from ".//icons8-delete.svg"
 export const TagsList = ({ tags, getAllTags }) => {
     // this component will return tags in a list view from our Tags table
     // we pass in the tags as a prop for easier state management
+    const currentTagReference = useRef({})
     const [tag, setTag] = useState({})
     const [editMode, setEditMode] = useState(false)
     const [updatedTag, setUpdatedTag] = useState(tag)
@@ -28,15 +29,16 @@ export const TagsList = ({ tags, getAllTags }) => {
     // and a function that will add tags and update the state on click
     const onSubmissionOfTag = (tag) => {
         if (tag.id) {
-            updateTag(tag).then(getTags)
+            updateTag(tag).then(getAllTags)
         } else {
-            addTag(tag)
+            addTag(tag).then(getAllTags)
         }
     }
 
     // add a function that will update the state of a single tag on click 
     const onClickOfEditButton = (tagId) => {
         getTagById(tagId).then((data) => setTag(data))
+        currentTagReference.current = tagId
     }
 
     const handleControlledInputChange = (event) => {
@@ -70,7 +72,7 @@ export const TagsList = ({ tags, getAllTags }) => {
                                             <EditIcon/>
                                         </button>
                                         <button className="tag-delete-button" onClick={() => {deleteTagOnClick(tag.id)}}>
-                                        <   DeleteIcon/>
+                                            <DeleteIcon/>
                                         </button>
                                     </div>
                         })
@@ -79,13 +81,13 @@ export const TagsList = ({ tags, getAllTags }) => {
                 <div className="tag-form">
                     <h2 className="panel-heading">{editMode ? "Update Tag" : "Create Tag"}</h2>
                     <div className="panel-block">
-                        <form style={{ width: "100%" }}>
+                        <form style={{ width: "50%" }}>
                             <div className="field">
                                 <label htmlFor="concept" className="label">Tag Name: </label>
                                 <div className="control">
                                     <input type="text" name="label" required autoFocus className="input"
                                         proptype="varchar"
-                                        placeholder="Label"
+                                        placeholder={currentTagReference ? `${tag.label}`:"Label"}
                                         value={updatedTag.label}
                                         onChange={handleControlledInputChange}
                                     />
