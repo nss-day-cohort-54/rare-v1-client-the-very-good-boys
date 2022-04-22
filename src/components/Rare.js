@@ -13,6 +13,7 @@ export const Rare = () => {
     setTokenState(newToken)
   }
 
+  
   return <>
     {
       token
@@ -34,6 +35,8 @@ export const Rare = () => {
       <NavBar token={token} setToken={setToken} />
       <Register token={token} setToken={setToken} />
     </Route>
+
+    
 
   </>
 }
