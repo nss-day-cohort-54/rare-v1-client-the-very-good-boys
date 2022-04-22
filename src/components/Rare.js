@@ -1,12 +1,20 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Route, Redirect } from "react-router-dom"
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
+import { getTags } from "./tags/TagsManger"
 
 export const Rare = () => {
   const [token, setTokenState] = useState(localStorage.getItem('token'))
+  const [tags, setTags] = useState([])
+
+  useEffect(
+    () => {
+      getTags().then(data => setTags(data))
+    },[]
+  )
 
   const setToken = (newToken) => {
     localStorage.setItem('token', newToken)
@@ -20,7 +28,7 @@ export const Rare = () => {
         ?
         <Route>
           <NavBar token={token} setToken={setToken} />
-          <ApplicationViews />
+          <ApplicationViews tags={tags} />
         </Route>
         :
         <Redirect to="/login" />
