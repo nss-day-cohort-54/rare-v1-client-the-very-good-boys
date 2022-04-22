@@ -12,9 +12,13 @@ export const Rare = () => {
 
   useEffect(
     () => {
-      getTags().then(data => setTags(data))
+      getAllTags()
     },[]
   )
+
+  const getAllTags = () => {
+    getTags().then((data) => setTags(data))
+  }
 
   const setToken = (newToken) => {
     localStorage.setItem('token', newToken)
@@ -28,7 +32,7 @@ export const Rare = () => {
         ?
         <Route>
           <NavBar token={token} setToken={setToken} />
-          <ApplicationViews tags={tags} />
+          <ApplicationViews tags={tags} getAllTags={getAllTags} />
         </Route>
         :
         <Redirect to="/login" />
