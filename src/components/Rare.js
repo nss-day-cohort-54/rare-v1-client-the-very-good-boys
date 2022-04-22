@@ -5,14 +5,22 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { getTags } from "./tags/TagsManger"
+import { getUsers } from "../Users/userManager"
 
 export const Rare = () => {
   const [token, setTokenState] = useState(localStorage.getItem('token'))
   const [tags, setTags] = useState([])
+  const [users, setUsers] = useState([])
 
   useEffect(
     () => {
       getTags().then(data => setTags(data))
+    },[]
+  )
+
+  useEffect(
+    () => {
+      getUsers().then(data => setUsers(data))
     },[]
   )
 
@@ -28,7 +36,7 @@ export const Rare = () => {
         ?
         <Route>
           <NavBar token={token} setToken={setToken} />
-          <ApplicationViews tags={tags} />
+          <ApplicationViews tags={tags} users={users} />
         </Route>
         :
         <Redirect to="/login" />
