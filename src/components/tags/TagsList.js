@@ -83,11 +83,11 @@ export const TagsList = ({ tags, getAllTags }) => {
                     <div className="panel-block">
                         <form style={{ width: "50%" }}>
                             <div className="field">
-                                <label htmlFor="concept" className="label">Tag Name: </label>
+                                <label htmlFor="label" className="label">Tag Name: </label>
                                 <div className="control">
                                     <input type="text" name="label" required autoFocus className="input"
                                         proptype="varchar"
-                                        placeholder={currentTagReference ? `${tag.label}`:"Label"}
+                                        placeholder={currentTagReference ? `${tag.label}`: "Label"}
                                         value={updatedTag.label}
                                         onChange={handleControlledInputChange}
                                     />
