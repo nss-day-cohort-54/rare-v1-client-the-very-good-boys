@@ -15,12 +15,6 @@ export const ApplicationViews = ( { tags, getAllTags, users } ) => {
       <Route exact path="/categories">
           <CategoryList />
       </Route>
-      <Route exact path="/userManagement">
-        <UserList />
-      </Route>
-      <Route exact path="/categories">
-          <CategoryList />
-      </Route>
       <Route exact path="/tags">
         <TagsList tags={tags} getAllTags={getAllTags} />
       </Route>
