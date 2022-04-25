@@ -7,8 +7,9 @@ import { UserDetails } from "../Users/userDetails"
 import { PostList } from "./posts/PostList"
 import { PostForm } from "./posts/PostForm.js"
 import { PostDetails } from "./posts/PostDetail.js"
+import { getPosts } from "./posts/PostManager"
 
-export const ApplicationViews = ({ tags, getAllTags, users, posts }) => {
+export const ApplicationViews = ({ tags, getAllTags, users, posts, getPosts }) => {
   return (
     <>
       <Route exact path="/categories">
@@ -32,7 +33,7 @@ export const ApplicationViews = ({ tags, getAllTags, users, posts }) => {
       </Route>
 
       <Route exact path="/components/posts">
-        <PostList posts={posts} />
+        <PostList posts={posts} getPosts={getPosts} />
       </Route>
     </>
   )
