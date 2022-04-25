@@ -38,8 +38,7 @@ export const Rare = () => {
         ?
         <Route>
           <NavBar token={token} setToken={setToken} />
-          <ApplicationViews tags={tags} getAllTags={getAllTags} />
-          <ApplicationViews tags={tags} users={users} />
+          <ApplicationViews tags={tags} getAllTags={getAllTags} users={users} />
         </Route>
         :
         <Redirect to="/login" />
