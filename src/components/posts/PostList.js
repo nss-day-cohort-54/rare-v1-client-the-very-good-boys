@@ -4,7 +4,7 @@ import { getPosts, getPostsBySearchTerm } from "./PostManager"
 import Post from "./Post"
 import "./Posts.css"
 
-export const PostList = () => {
+export const PostList = ({posts}) => {
 
     const [ posts, setPosts ] = useState([])
     const [ searchTerm, setSearchTerm ] = useState('')
