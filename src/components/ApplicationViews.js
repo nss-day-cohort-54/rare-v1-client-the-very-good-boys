@@ -8,28 +8,32 @@ import { PostList } from "./posts/PostList"
 import { PostForm } from "./posts/PostForm.js"
 import { PostDetails } from "./posts/PostDetail.js"
 
-export const ApplicationViews = ({ tags, users, posts }) => {
-    return (
-      <>
-        <Route exact path="/categories">
-          <CategoryList />
-        </Route>
+export const ApplicationViews = ({ tags, getAllTags, users, posts }) => {
+  return (
+    <>
+      <Route exact path="/categories">
+        <CategoryList />
+      </Route>
 
-        <Route exact path="/tags">
-          <TagsList tags={tags} />
-        </Route>
+      <Route exact path="/tags">
+        <TagsList tags={tags} />
+      </Route>
 
-        <Route exact path="/userManagement">
-          <UserList users={users} />
-        </Route>
+      <Route exact path="/userManagement">
+        <UserList users={users} />
+      </Route>
 
-        <Route exact path="/users/:userId(\d+)">
-          <UserDetails />
-        </Route>
+      <Route exact path="/users/:userId(\d+)">
+        <UserDetails />
+      </Route>
 
-        <Route exact path="/components/posts">
-            <PostList posts={posts} />
-        </Route>
-      </>
-    )
+      <Route exact path="/tags">
+        <TagsList tags={tags} getAllTags={getAllTags} />
+      </Route>
+
+      <Route exact path="/components/posts">
+        <PostList posts={posts} />
+      </Route>
+    </>
+  )
 }
