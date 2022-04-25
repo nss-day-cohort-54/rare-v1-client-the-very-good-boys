@@ -13,9 +13,14 @@ export const ApplicationViews = ({ tags, getAllTags, users, posts, getPosts }) =
   return (
     <>
       <Route exact path="/categories">
+<<<<<<< HEAD
         <CategoryList />
       </Route>
 
+=======
+          <CategoryList />
+      </Route>
+>>>>>>> main
       <Route exact path="/tags">
         <TagsList tags={tags} />
       </Route>
