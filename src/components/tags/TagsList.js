@@ -36,7 +36,7 @@ export const TagsList = ({ tags, getAllTags }) => {
 
     // add a function that will update the state of a single tag on click 
     const onClickOfEditButton = (tagId) => {
-        getTagById(tagId).then((data) => setTag(data))
+        getTagById(tagId).then((data) => setTag(data)).then(() => console.log(tag))
         currentTagReference.current = tagId
     }
 
@@ -86,7 +86,7 @@ export const TagsList = ({ tags, getAllTags }) => {
                                 <div className="control">
                                     <input type="text" name="label" required autoFocus className="input"
                                         proptype="varchar"
-                                        placeholder={currentTagReference ? `${tag.label}`: "Label"}
+                                        placeholder="Label"
                                         value={updatedTag.label}
                                         onChange={handleControlledInputChange}
                                     />
