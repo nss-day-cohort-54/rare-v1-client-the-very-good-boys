@@ -14,6 +14,8 @@ export const PostList = ({posts}) => {
                               <div>
 
                                     <Link  to={`/posts/${post.id}`}>{post.title}</Link>
+                                    <p>{post.user.first_name} {post.user.last_name}</p>
+                                    <p>{post.category.label}</p>
 
                                </div>
                                </>
