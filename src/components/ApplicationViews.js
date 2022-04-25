@@ -7,15 +7,12 @@ import { UserList } from "../Users/userList"
 export const ApplicationViews = ( { tags, getAllTags } ) => {
   return (
     <>
-    <h1 >Welcome to Rare Publishing</h1>
-
-    <Route exact path="/categories">
-        <CategoryList />
-    </Route>
-    <Route exact path="/userManagement">
-      <UserList />
-    </Route>
-      <h1 >Welcome to Rare Publishing</h1>
+      <Route exact path="/categories">
+          <CategoryList />
+      </Route>
+      <Route exact path="/userManagement">
+        <UserList />
+      </Route>
       <Route exact path="/tags">
         <TagsList tags={tags} getAllTags={getAllTags} />
       </Route>

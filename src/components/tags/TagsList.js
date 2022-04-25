@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { deleteTag, addTag, getTags, getTagById, updateTag } from "./TagsManger"
-import { ReactComponent as EditIcon } from ".//icons8-edit.svg"
-import { ReactComponent as DeleteIcon} from ".//icons8-delete.svg"
+import "./TagsList.css"
 
 export const TagsList = ({ tags, getAllTags }) => {
     // this component will return tags in a list view from our Tags table
@@ -66,20 +65,20 @@ export const TagsList = ({ tags, getAllTags }) => {
                 <div className='tags-list'>
                     {
                         tags.map((tag) => {
-                            return <div key={tag.id}>
+                            return <div className="tag" key={tag.id}>
                                         <p>{tag.label}</p>
                                         <button className="tag-edit-button" onClick={() => {onClickOfEditButton(tag.id)}}>
-                                            <EditIcon/>
+                                        ✎
                                         </button>
                                         <button className="tag-delete-button" onClick={() => {deleteTagOnClick(tag.id)}}>
-                                            <DeleteIcon/>
+                                        🗑
                                         </button>
                                     </div>
                         })
                     }
                 </div>
                 <div className="tag-form">
-                    <h2 className="panel-heading">{editMode ? "Update Tag" : "Create Tag"}</h2>
+                    <h2 className="panel-head">{editMode ? "Update Tag" : "Create Tag"}</h2>
                     <div className="panel-block">
                         <form style={{ width: "50%" }}>
                             <div className="field">
