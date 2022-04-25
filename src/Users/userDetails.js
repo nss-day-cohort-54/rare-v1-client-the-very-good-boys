@@ -1,9 +1,13 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { getSubscriptions } from "./subscriptionManager"
 
 export const UserDetails = () => {
 
     const [selectedUser, setSelectedUser] = useState({})
+    const [subscribe, setSubscribe] = useState({})
+    const [subscriptions, setSubscriptions] = useState([])
+
     const { userId } = useParams();
 
     useEffect(
@@ -17,9 +21,34 @@ export const UserDetails = () => {
         [userId]
     )
 
-    const subscribeToUser = () => {
-        
+    const getAllSubscriptions = () => {
+        getSubscriptions().then(data => setSubscriptions(data))
+      }
+
+    const onFormSubmit = (subscribeData) => {
+        console.log("submit", subscribeData)
+        if (subscribeData.id) {
+          updateEntry(subscribeData).then(getAllSubscriptions())
+        } else {
+          addEntry(subscribeData).then(getAllSubscriptions())
+        }
+        setSubscribe({
+          follower_id: 0,
+          author_id: 0,
+          created_on: 0
+        })
+      }
+
+      const newSubscription = () => {
+        const copyEntry = { ...updatedEntry }
+        copyEntry.moodId = parseInt(copyEntry.moodId)
+        copyEntry.tags = selectedTags
+        if (!copyEntry.date) {
+            copyEntry.date = Date(Date.now()).toLocaleString('en-us').split('GMT')[0]
+        }
+        onFormSubmit(copyEntry)
     }
+    
 
     return ( 
     <>
