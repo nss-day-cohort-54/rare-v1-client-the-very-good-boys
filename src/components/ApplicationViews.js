@@ -13,16 +13,7 @@ export const ApplicationViews = ({ tags, getAllTags, users, posts, getPosts }) =
   return (
     <>
       <Route exact path="/categories">
-<<<<<<< HEAD
         <CategoryList />
-      </Route>
-
-=======
-          <CategoryList />
-      </Route>
->>>>>>> main
-      <Route exact path="/tags">
-        <TagsList tags={tags} />
       </Route>
 
       <Route exact path="/userManagement">
@@ -37,7 +28,7 @@ export const ApplicationViews = ({ tags, getAllTags, users, posts, getPosts }) =
         <TagsList tags={tags} getAllTags={getAllTags} />
       </Route>
 
-      <Route exact path="/components/posts">
+      <Route exact path="/posts">
         <PostList posts={posts} getPosts={getPosts} />
       </Route>
     </>

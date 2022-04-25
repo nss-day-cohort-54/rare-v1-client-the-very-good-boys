@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 
@@ -13,8 +12,9 @@ export const PostList = ({posts}) => {
                     post => {
                         return <>
                               <div>
-                               <Link  to={`/posts/${post.id}`}>{post.title}</Link>
-                               
+
+                                    <Link  to={`/posts/${post.id}`}>{post.title}</Link>
+
                                </div>
                                </>
                     }
