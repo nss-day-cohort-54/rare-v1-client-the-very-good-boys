@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom'
 import { getPosts, getPostsBySearchTerm } from "./PostManager"
 import Post from "./Post"
 import "./Posts.css"
-import { PostSearch } from "./PostSearch"
 
 export const PostList = () => {
 

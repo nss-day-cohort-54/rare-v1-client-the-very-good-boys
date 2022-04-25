@@ -21,32 +21,9 @@ export const ApplicationViews = ( { tags } ) => {
       <Route exact path="/tags">
         <TagsList tags={tags} />
       </Route>
-      <Route exact path="/userManagement">
-        <UserList />
+      <Route exact path="/components/posts">
+        <PostList />
       </Route>
-      <Route exact path="/posts">
-                <>
-                    <main className="postContainer">
-                        <h1>Posts</h1>
-
-                        <PostList />
-                    </main>
-                </>
-            </Route>
-
-            <Route exact path="/posts/create">
-                <PostForm />
-            </Route>
-
-            <Route path="/posts/:postId(\d+)">
-                <PostDetails />
-            </Route>
-
-            <Route path="/posts/edit/:postId(\d+)">
-                <PostForm />
-            </Route>
-
     </>
-    
   )
 }

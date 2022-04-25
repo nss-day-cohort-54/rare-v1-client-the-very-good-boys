@@ -4,7 +4,6 @@ import { useParams, useHistory } from 'react-router-dom'
 
 export const PostForm = () => {
     // Use the required context providers for data
-    const [locations, setLocations] = useState([])
     const { postId } = useParams()
     // Component state
     const [post, setPost] = useState({})
@@ -33,82 +32,94 @@ export const PostForm = () => {
     }, [])
 
     const constructNewPost = () => {
-        const locationId = parseInt(post.locationId)
-
-        if (locationId === 0) {
-            window.alert("Please select a location")
+        
+        if (editMode) {
+            // PUT
+            updatePost({
+                id: post.id,
+                userId: parseInt(localStorage.getItem("token")),
+                categoryId: post.category_id,
+                title: post.title,
+                publicationDate: post.publication_date,
+                imageURL: post.image_url,
+                content: post.content,
+                approved: post.approved
+            })
+                .then(() => history.push("/posts"))
         } else {
-            if (editMode) {
-                // PUT
-                updatePost({
-                    id: post.id,
-                    name: post.name,
-                    breed: post.breed,
-                    locationId: locationId,
-                    status: post.status,
-                    customerId: parseInt(localStorage.getItem("kennel_customer"))
-                })
-                    .then(() => history.push("/posts"))
-            } else {
-                // POST
-                addPost({
-                    name: post.name,
-                    breed: post.breed,
-                    locationId: locationId,
-                    status: post.status,
-                    customerId: parseInt(localStorage.getItem("kennel_customer"))
-                })
-                    .then(() => history.push("/posts"))
-            }
+            // POST
+            addPost({
+                id: post.id,
+                userId: parseInt(localStorage.getItem("token")),
+                categoryId: post.category_id,
+                title: post.title,
+                publicationDate: post.publication_date,
+                imageURL: post.image_url,
+                content: post.content,
+                approved: post.approved
+            })
+                .then(() => history.push("/posts"))
         }
+        
     }
 
+
+    //Title, author's name, category, publication date, content
     return (
         <form className="postForm">
-            <h2 className="postForm__title">{editMode ? "Update Post" : "Admit Post"}</h2>
+            <h2 className="postForm_title">{editMode ? "Update Post" : "Admit Post"}</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="name">Post name: </label>
-                    <input type="text" name="name" required autoFocus className="form-control"
-                        placeholder="Post name"
-                        defaultValue={post.name}
+                    <label htmlFor="title">Post Title: </label>
+                    <input type="text" name="title" required autoFocus className="form-control"
+                        placeholder="Post title"
+                        defaultValue={post.title}
                         onChange={handleControlledInputChange}
                     />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="breed">Post breed: </label>
-                    <input type="text" name="breed" required className="form-control"
-                        placeholder="Post breed"
-                        defaultValue={post.breed}
+                    <label htmlFor="post_category">Post category: </label>
+                    <input type="text" name="category" required className="form-control"
+                        placeholder="Post category"
+                        defaultValue={post.category_id}
                         onChange={handleControlledInputChange}
                     />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="locationId">Location: </label>
-                    <select name="locationId" className="form-control"
-                        value={post.location_id}
+                    <label htmlFor="author_name">Author name: </label>
+                    <textarea type="text" name="author_name" className="form-control"
+                        value={post.author_name}
                         onChange={handleControlledInputChange}>
-
-                        <option value="0">Select a location</option>
-                        {
-                            locations.map(e => (
-                                <option key={e.id} value={e.id}>
-                                    {e.name}
-                                </option>
-                            ))
-                        }
-                    </select>
+                    </textarea>
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="status">Status: </label>
-                    <textarea type="text" name="status" className="form-control"
-                        value={post.status}
+                    <label htmlFor="author_name">Author name: </label>
+                    <textarea type="text" name="author_name" className="form-control"
+                        value={post.author_name}
+                        onChange={handleControlledInputChange}>
+                    </textarea>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="publication_date">Publication date: </label>
+                    <textarea type="text" name="publication_date" className="form-control"
+                        value={post.publication_date}
+                        onChange={handleControlledInputChange}>
+                    </textarea>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="content">Content: </label>
+                    <textarea type="text" name="content" className="form-control"
+                        value={post.content}
                         onChange={handleControlledInputChange}>
                     </textarea>
                 </div>
@@ -119,7 +130,7 @@ export const PostForm = () => {
                     constructNewPost()
                 }}
                 className="btn btn-primary">
-                {editMode ? "Save Updates" : "Make Reservation"}
+                {editMode ? "Save Updates" : "Create Post"}
             </button>
         </form>
     )

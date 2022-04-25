@@ -5,7 +5,7 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { getTags } from "./tags/TagsManger"
-import { getPosts } from "./posts/PostManger"
+import { getPosts } from "./posts/PostManager"
 
 export const Rare = () => {
   const [token, setTokenState] = useState(localStorage.getItem('token'))

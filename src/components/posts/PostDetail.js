@@ -16,13 +16,11 @@ export const PostDetails = () => {
 
     return (
         <section className="post">
-            <h3 className="post__name">{post.name}</h3>
-            <div className="post__breed">{post.breed}</div>
-            <div className="post__location">Location: {post.location?.name}</div>
-            <div className="post__owner">Customer: {post.customer?.name}</div>
-            <div className="post__status">Status: {post.status}</div>
+            <h3 className="post__title">{post.title}</h3>
+            <div className="post__date">{post.publication_date}</div>
+            <div className="post__content">{post.content}</div>
 
-            <button onClick={() => deletePost(post.id).then(() => history.push("/posts"))} >Release Post</button>
+            <button onClick={() => deletePost(post.id).then(() => history.push("/posts"))} >Delete Post</button>
 
             <button onClick={() => {
                 history.push(`/posts/edit/${post.id}`)
