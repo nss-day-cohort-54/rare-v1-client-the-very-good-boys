@@ -7,25 +7,29 @@ import { UserDetails } from "../Users/userDetails"
 import { PostList } from "./posts/PostList"
 import { PostForm } from "./posts/PostForm.js"
 import { PostDetails } from "./posts/PostDetail.js"
+import { getPosts } from "./posts/PostManager"
 
-
-export const ApplicationViews = ( { tags, getAllTags, users } ) => {
+export const ApplicationViews = ({ tags, getAllTags, users, posts, getPosts }) => {
   return (
     <>
       <Route exact path="/categories">
-          <CategoryList />
+        <CategoryList />
       </Route>
-      <Route exact path="/tags">
-        <TagsList tags={tags} getAllTags={getAllTags} />
-      </Route>
+
       <Route exact path="/userManagement">
         <UserList users={users} />
       </Route>
+
       <Route exact path="/users/:userId(\d+)">
         <UserDetails />
       </Route>
-      <Route exact path="/components/posts">
-        <PostList />
+
+      <Route exact path="/tags">
+        <TagsList tags={tags} getAllTags={getAllTags} />
+      </Route>
+
+      <Route exact path="/posts">
+        <PostList posts={posts} getPosts={getPosts} />
       </Route>
     </>
   )

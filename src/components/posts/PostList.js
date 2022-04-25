@@ -1,41 +1,25 @@
-import React, { useState, useEffect } from "react"
-import { useHistory } from 'react-router-dom'
-import { getPosts, getPostsBySearchTerm } from "./PostManager"
-import Post from "./Post"
-import "./Posts.css"
+import { Link } from "react-router-dom"
 
-export const PostList = () => {
 
-    const [ posts, setPosts ] = useState([])
-    const [ searchTerm, setSearchTerm ] = useState('')
-    const history = useHistory()
+export const PostList = ({posts}) => {
 
-    // Initialization effect hook -> Go get post data
-    useEffect(()=> {
-        if (searchTerm.length > 1) {
-            getPostsBySearchTerm(searchTerm).then((postsData) => setPosts(postsData))
-        } else {
-            getPosts().then((postsData) => setPosts(postsData))
-        }
-    }, [searchTerm])
-
-    const onSearchTermChange = (value) => {
-        setSearchTerm(value)
-    }
 
     return (
-        <>
-            <PostSearch onSearchTermChange={onSearchTermChange} searchTerm={searchTerm} />
-            <div style={{ marginTop: "2rem"}}>
-                <button onClick={() => history.push("/posts/create")}>
-                    Create Post
-                </button>
-                <div className="posts">
-                    {
-                        posts.map(post => <Post key={post.id} post={post} />)
+        <article className="postListContainer">
+            <h1 className="postListHeader">Posts</h1>
+            {
+                posts.map(
+                    post => {
+                        return <>
+                              <div>
+
+                                    <Link  to={`/posts/${post.id}`}>{post.title}</Link>
+
+                               </div>
+                               </>
                     }
-                </div>
-            </div>
-        </>
+                )
+            }
+        </article>
     )
 }

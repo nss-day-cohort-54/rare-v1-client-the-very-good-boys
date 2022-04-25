@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { useParams, useHistory } from "react-router-dom"
+import { Link, useParams, useHistory } from "react-router-dom"
+import "./Posts.css"
 
 import { getPostById, deletePost } from "./PostManager"
 import "./Posts.css"

@@ -14,6 +14,7 @@ export const Rare = () => {
   const [users, setUsers] = useState([])
   const [posts, setPosts] = useState([])
 
+
   useEffect(
     () => {
       getAllTags()
@@ -38,7 +39,8 @@ export const Rare = () => {
         ?
         <Route>
           <NavBar token={token} setToken={setToken} />
-          <ApplicationViews tags={tags} getAllTags={getAllTags} users={users} />
+          
+          <ApplicationViews tags={tags} getAllTags={getAllTags} users={users} posts={posts} />
         </Route>
         :
         <Redirect to="/login" />
