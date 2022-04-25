@@ -5,12 +5,20 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { getTags } from "./tags/TagsManger"
+<<<<<<< HEAD
 import { getUsers } from "../Users/userManager"
+=======
+import { getPosts } from "./posts/PostManager"
+>>>>>>> main
 
 export const Rare = () => {
   const [token, setTokenState] = useState(localStorage.getItem('token'))
   const [tags, setTags] = useState([])
+<<<<<<< HEAD
   const [users, setUsers] = useState([])
+=======
+  const [posts, setPosts] = useState([])
+>>>>>>> main
 
   useEffect(
     () => {
@@ -20,7 +28,11 @@ export const Rare = () => {
 
   useEffect(
     () => {
+<<<<<<< HEAD
       getUsers().then(data => setUsers(data))
+=======
+      getPosts().then(data => setPosts(data))
+>>>>>>> main
     },[]
   )
 
