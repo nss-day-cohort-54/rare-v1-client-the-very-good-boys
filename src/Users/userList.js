@@ -1,20 +1,9 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 
-export const UserList = () => {
+export const UserList = ({users}) => {
 
-    const [users, setUsers] = useState([])
-
-    useEffect(
-        () => {
-            fetch("http://localhost:8088/users")
-                .then(res => res.json())
-                .then((usersArray) => {
-                    setUsers(usersArray)
-                })
-        },
-        []
-    )
 
     return (
         <article className="userListContainer">
@@ -22,7 +11,12 @@ export const UserList = () => {
             {
                 users.map(
                     user => {
-                        return <li className="users">{user.first_name} {user.last_name}</li>
+                        return <>
+                              <div>
+                               <Link  to={`/users/${user.id}`}>{user.first_name} {user.last_name}</Link>
+                               
+                               </div>
+                               </>
                     }
                 )
             }
