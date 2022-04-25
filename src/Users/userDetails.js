@@ -16,7 +16,10 @@ export const UserDetails = () => {
         },
         [userId]
     )
-console.log(selectedUser)
+
+    const subscribeToUser = () => {
+        
+    }
 
     return ( 
     <>
@@ -43,6 +46,7 @@ console.log(selectedUser)
                     {selectedUser.bio}
                 </li>
             </ul>
+
             <button className="subscribe">Subscribe</button>
 
 
